@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hijack Data Input</title>
+</head>
+<body>
+    <div class="container">
+        <form action="#" method="POST">
+            {% csrf_token %}
+            {{ dataform.as_p }}
+
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
