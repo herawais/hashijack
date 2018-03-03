@@ -6,9 +6,10 @@
 </head>
 <body>
     <div class="container">
-        <form action="#" method="POST">
+        <form action="" method="POST">
             {% csrf_token %}
             {{ dataform.as_p }}
+            {{ message }}
 
             <input type="submit" class="btn btn-primary" value="Submit">
         </form>

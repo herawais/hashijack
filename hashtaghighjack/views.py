@@ -5,15 +5,15 @@ from . import forms
 
 
 def hijack(request):
+    msg = "hello this is a message"
     form = forms.DataForm()
     if request.method == 'post':
-        form = forms.DataForm(request.post)
+        form = forms.DataForm(request.POST)
         print("Date is entered")
 
         if form.is_valid():
             print("Date is valid entered")
-
-        print(form.cleaned_data['date'])
-    return render(request, 'hashtaghijack/hijack.html', {'dataform':form})
+            msg = form.cleaned_data['date']
+    return render(request, 'hashtaghijack/hijack.html', {'dataform':form, 'message':msg})
 
 
