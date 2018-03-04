@@ -1,18 +1,33 @@
 <!DOCTYPE html>
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hijack Data Input</title>
+    <title>
+            {% block title %} {{ title }} {% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-    <div class="container">
-        <form action="" method="POST">
+<div class="col-xs-3">
+    {% block body %}
+        <form action="/hijack/" method="POST">
             {% csrf_token %}
-            {{ dataform.as_p }}
-            {{ message }}
 
-            <input type="submit" class="btn btn-primary" value="Submit">
+            {% bootstrap_form dataform %}
+            {% buttons submit='Submit' reset='Clear' %}
+            {% endbuttons %}
+
         </form>
-    </div>
+        <h2>Recent Dates</h2>
+        {% for d in data %}
+            <p>{{ d.date }}</p>
+        {% endfor %}
+    {% endblock %}
+</div>
 </body>
 </html>
